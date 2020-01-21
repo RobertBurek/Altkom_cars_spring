@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/cars">Lista samochodów</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/carAdd">Nowy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2>Tabkica samochodów</h2>
+    <p>Lista samochodów z bazy danych sql na WEBD aplikacja web-spring</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>VIN</th>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Edit</th>
+            <th>Usuń</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car: ${carListModel}">
+            <td th:text="${car.id}"/>
+            <td th:text="${car.vin}"/>
+            <td th:text="${car.brand}"/>
+            <td th:text="${car.model}"/>
+            <td><a th:href="@{/carEdit(carId=${car.id})}">Edit</a></td>
+            <td><a th:href="@{/carDelete(carId=${car.id})}">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
