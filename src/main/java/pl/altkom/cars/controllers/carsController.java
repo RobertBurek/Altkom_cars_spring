@@ -30,6 +30,7 @@ public class carsController {
     public String editCar(@RequestParam(name = "carId") Long carId, Model model) {
         Car car = carsRepository.findById(carId.longValue());
         model.addAttribute("carModel", car);
+        model.addAttribute("carFind", new Car());
         return "carEditView";
     }
 
@@ -46,6 +47,7 @@ public class carsController {
                 .filter(car -> car.getBrand().equals(carFind.getBrand()))
                 .collect(Collectors.toList());
         model.addAttribute("carListModel", cars);
+        model.addAttribute("carFind", new Car());
         return "carsViewFind";
     }
 
@@ -58,6 +60,7 @@ public class carsController {
     @GetMapping("/carAdd")
     public String add(Model model) {
         model.addAttribute("carModel", new Car());
+        model.addAttribute("carFind", new Car());
         return "carEditView";
     }
 }
